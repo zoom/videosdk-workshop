@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@zoom/videosdk": "^1.8.10"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsrsasign": "^10.8.6"
   }
 }
