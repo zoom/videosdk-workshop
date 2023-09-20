@@ -13,6 +13,7 @@ const Home = () => {
   const meetingArgs = useContext(UserContext)
 
   const submitUserData = async () => {
+    
     meetingArgs.name = username;
     meetingArgs.password = password;
     console.log(meetingArgs)
