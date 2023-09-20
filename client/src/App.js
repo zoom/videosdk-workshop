@@ -1,7 +1,8 @@
 import React, {useContext, useState, useEffect, useReducer} from 'react';
 import { UserContext } from './Context/globalContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Home/Home'
+import Home from './Home/Home';
+import Session from './Home/Session';
 import './App.css';
 
 const meetingArgs = {
@@ -19,6 +20,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
               <Route path = '/' element = {<Home/>}/>
+              <Route path = '/Session' element = {<Session/>}/>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
