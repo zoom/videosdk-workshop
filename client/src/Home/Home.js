@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-// import {UserContext, ClassroomContext} from '../../context/globalContext'; 
+import { ClientContext, UserContext } from '../Context/globalContext';
 import {Form, Input, Button, Checkbox, Select, message} from 'antd';
 import './Home.css'
 
@@ -9,11 +9,29 @@ const Home = () => {
   const [username, updateUsername] = useState('');
   const [password, updatePassword] = useState('');
 
-  const submitUserData = () => {
-    localStorage.setItem('username', JSON.stringify(username));
-    localStorage.setItem('password', JSON.stringify(password));
+  const client = useContext(ClientContext);
+  const meetingArgs = useContext(UserContext)
 
+  const submitUserData = async () => {
+    meetingArgs.name = username;
+    meetingArgs.password = password;
+    console.log(meetingArgs)
+    
     //add JWT and initialilzation functionality
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify(meetingArgs)     
+    }
+    let response = await fetch('/generate', requestOptions).then(response => response.json());
+    meetingArgs.signature = response;
+
+    client.init('en-US', 'CDN').then(() => {
+      console.log('session initialilzed')
+    }).catch((error) => {
+      console.log(error)
+    });
   }
 
   

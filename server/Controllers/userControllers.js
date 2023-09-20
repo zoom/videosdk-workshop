@@ -12,6 +12,7 @@ userControllers.generateToken = (req, res, next) => {
         const oHeader = { alg: 'HS256', typ: 'JWT' };
 
         //get credentials 
+        
 
         const oPayload = {
             app_key: sdkKey,
