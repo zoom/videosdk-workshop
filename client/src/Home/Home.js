@@ -12,6 +12,8 @@ const Home = () => {
   const submitUserData = () => {
     localStorage.setItem('username', JSON.stringify(username));
     localStorage.setItem('password', JSON.stringify(password));
+
+    //add JWT and initialilzation functionality
   }
 
   
