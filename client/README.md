@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+## Introduction & Tech-Stack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hello and welcome. This appilcation is the first installment of our Developer Workshop Series, focused on getting your started with the Video SDK. The application is built using Javascript. Outside of that, here is the main tech-stack that is used throughout: 
 
-## Available Scripts
+- React 
+- Node.js
+- Express
+- Zoom Video SDK 
 
-In the project directory, you can run:
+## Learning Goals 
+While this workshop is meant to be introductory, we advise that you have a working knowledge of the first three listed technologies. Our learning goals for this workshop are as follows: 
 
-### `npm start`
+- Successfully access your Video SDK credentials & understand how to use them within your application 
+- Understand how to generate your JWT token and where to do so in your application 
+- Successfully initialize+end/destroy a Video SDK session within your application 
+- Succesfully join+leave a Video SDK session within your application
+- Sucessfully incorporate event listeners into your applicaton 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+When attending the workshop, make sure you have the following set up on your system: 
 
-### `npm test`
+- A code editor; the host will be using VSCode
+- The latest version of Node.js
+- This repo, downloaded and cloned 
+- An active Video SDK account 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Branches/Sections
 
-### `npm run build`
+You may notice that this repo has branches following the name cadence "Step _". Each step will have an added portion of completed code, ensuring you have a place to jump to if you ever fall behind. For this workhop, here is the outline of each step: 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Step 0** - This step contains mostly boiler plate code to get us started, including pre-installed npm packages, UI code, etc.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Step 1** - In Step 1, we'll fill out our` App.js` & `Home.js` page with functional code on the frontend, and create our middelware function for generating our JWT token on the backend. Here's what your application should include at the end of this step: 
+  - `index.js` should now have an added variable, `client`, that is passed down to our application using Context Provider
+  - `App.js` should include a 'meetingArgs' object and render the 'Home' component. The rendered components should be wrapped with 'UseContext.Provider', passing in the        meetingArgs object as a value
+  - `Home.js` should include new variables `meetingArgs` and `client`, which are read in using the 'useContext' hook
+  - The function `submitUserData` should now be added to `Home.js`, which makes a fetch request to generate our token _and_ initializes our session
+  - `/server/Controllers/userControllers.js` should contain a function to generate our token, destructuring our request body to gain access to variables sent from the frontend, and saving the created signature to the res.locals object
+  -`server/router.js` should now have `userControllers.generateToken` added to the post method 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*If at any time you feel behind before we move to Step 2, feel free to check out to the 'Step 1' branch and work from there*
 
-### `npm run eject`
+- **Step 2** - In this step, we'll create and fill out `session.js` in the Home folder on the frontend and then add it to be rendered on `App.js`. At the end of this step, you should have: 
+  - These variables inside the functional component `Session`: 
+  ```
+        const client = useContext(ClientContext);
+        const meetingArgs = useContext(UserContext);
+        const {topic, name, password, signature} = meetingArgs;
+        const navigate = useNavigate();
+  ```
+  - The function `joinSession` that joins the session, creates a variable called `stream` and one called `userId`
+  - The function `endSession` that destroys the session and navigates back to the home page
+  - a button that calls `joinSession` when clicked
+  - a button that calls `endSession` when clicked
+  - App.js should now additionally render the `Session` component, with the path `/session`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  *If at any time you feel behind before we move to Step 3, feel free to check out to the 'Step 2' branch and work from there*
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  ` **Step 3** - In this last step, we'll add in our event listeners to notify a user when someone has joined or left the session 
