@@ -2,10 +2,10 @@
 
 Hello and welcome. This appilcation is the first installment of our Developer Workshop Series, focused on getting your started with the Video SDK. The application is built using Javascript. Outside of that, here is the main tech-stack that is used throughout: 
 
--React 
--Node.js
--Express
--Zoom Video SDK 
+- React 
+- Node.js
+- Express
+- Zoom Video SDK 
 
 ## Learning Goals 
 While this workshop is meant to be introductory, we advise that you have a working knowledge of the first three listed technologies. Our learning goals for this workshop are as follows: 
