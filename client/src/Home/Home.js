@@ -10,7 +10,9 @@ const Home = () => {
   const [password, updatePassword] = useState('');
 
   const client = useContext(ClientContext);
-  const meetingArgs = useContext(UserContext)
+  const meetingArgs = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const submitUserData = async () => {
     
@@ -25,14 +27,19 @@ const Home = () => {
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify(meetingArgs)     
     }
-    let response = await fetch('/generate', requestOptions).then(response => response.json());
+    
+    let response = await fetch('http://localhost:4000/generate', requestOptions).then(response => response.json());
+    console.log(response)
+
     meetingArgs.signature = response;
 
     client.init('en-US', 'CDN').then(() => {
-      console.log('session initialilzed')
+      console.log('session initialilzed');
+      navigate('/session')
     }).catch((error) => {
       console.log(error)
     });
+    
   }
 
   
