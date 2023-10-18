@@ -62,7 +62,7 @@ You may notice that this repo has branches following the name cadence "Step _". 
         const navigate = useNavigate();
   ```
   - The function `joinSession` that joins the session, creates a variable called `stream` and one called `userId`
-  - The function `endSession` that destroys the session and navigates back to the home page
+  - The function `endSession` that leaves the session and navigates back to the home page
   - a button that calls `joinSession` when clicked
   - a button that calls `endSession` when clicked
   - App.js should now additionally render the `Session` component, with the path `/session`

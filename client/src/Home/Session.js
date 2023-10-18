@@ -10,9 +10,6 @@ const Session = () => {
   const {topic, signature, name, password} = meetingArgs;
   const client = useContext(ClientContext);
 
-  const [messageApi, contextHolder] = message.useMessage();
-
-
   const navigate = useNavigate();
 
   const joinSession = async () => {
