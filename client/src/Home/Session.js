@@ -9,10 +9,6 @@ const Session = () => {
   const meetingArgs = useContext(UserContext);
   const {topic, signature, name, password} = meetingArgs;
   const client = useContext(ClientContext);
-
-  const [messageApi, contextHolder] = message.useMessage();
-
-
   const navigate = useNavigate();
 
   const joinSession = async () => {
@@ -31,16 +27,6 @@ const Session = () => {
     client.leave();
     navigate('/')
   }
-
-  const userJoined = () => {
-    message.success('user has joined')
-  };
-
-  const userLeft = () => {
-    message.success('user has left')
-  }
-
-  client.on('user-added', userJoined);
 
   return(
     <div>
