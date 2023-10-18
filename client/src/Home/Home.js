@@ -20,8 +20,6 @@ const Home = () => {
     meetingArgs.password = password;
     console.log(meetingArgs)
     
-    //add JWT and initialilzation functionality
-
     const requestOptions = {
       method: 'POST',
       headers: {'Content-Type' : 'application/json'},
