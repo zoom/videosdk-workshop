@@ -1,6 +1,18 @@
-## Introduction & Tech-Stack
+## Introduction
 
-Hello and welcome. This appilcation is the first installment of our Developer Workshop Series, focused on getting your started with the Video SDK. The application is built using Javascript. Outside of that, here is the main tech-stack that is used throughout: 
+Hello and welcome. This appilcation is the first installment of our Developer Workshop Series, focused on getting your started with the Video SDK. To get started with this project, nagivate to the server folder and install necessary packages. Run the following commands in your terminal: 
+
+- `cd server`
+- `npm install`
+
+At this point, to keep things organized between our front and backend, it is suggested to open up a second terminal window in your code editor. Run the following commands in your second terminal: 
+- `cd client`
+- `npm install`
+
+To start your server, run `node server` in your terminal that's in the folder `workshop-project/server`. To start your react application, navigate to the ternimal that's in the `workshop-project/client` folder and run `npm start`. Your server should be listening on port 4000 and your react app should be running on localhost:3000. 
+
+## Tech-Stack
+The application is built using Javascript. Outside of that, here is the main tech-stack that is used throughout: 
 
 - React 
 - Node.js
@@ -58,4 +70,12 @@ You may notice that this repo has branches following the name cadence "Step _". 
   *If at any time you feel behind before we move to Step 3, feel free to check out to the 'Step 2' branch and work from there*
 
 
-  ` **Step 3** - In this last step, we'll add in our event listeners to notify a user when someone has joined or left the session 
+  ` **Step 3** - In this last step, we'll add in our event listeners to notify when a user has joined the session. At the end of this step, you should have: 
+  - A function called  `userJoined` added to `session.js` 
+  - An event listener for the `user-added` event 
+
+Completing this step will bring us to the end of our project. Additional useful documentation is linked below: 
+
+- Video SDK Authorization: https://developers.zoom.us/docs/video-sdk/auth/
+- Video SDK Sessions: https://developers.zoom.us/docs/video-sdk/web/sessions/
+- Video SDK Event Listeners: https://marketplacefront.zoom.us/sdk/custom/web/modules.html
