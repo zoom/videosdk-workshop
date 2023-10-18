@@ -1,0 +1,28 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #d9edff;
+}
+.login-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+  max-width: 1000px;
+  background-color: white;
+  box-shadow: 0 0 40px rgba(0,0,0,0.16);
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+#login-form {
+  flex: 1 0 100%;
+  max-width: 480px;
+  width: 100%;
+  padding: 60px;
+}
+#login-form p {
+  margin-bottom: 30px;
+}

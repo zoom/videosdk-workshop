@@ -6,7 +6,7 @@ import Session from './Home/Session';
 import './App.css';
 
 const meetingArgs = {
-  topic: 'zoom workshop',
+  topic: 'Zoom_Workshop',
   name: '',
   password: '', 
   //fixed for demo
@@ -15,7 +15,6 @@ const meetingArgs = {
 const App = () => {
   return (
     <div>
-      hi!
       <UserContext.Provider value = {meetingArgs}>
         <BrowserRouter>
           <Routes>
