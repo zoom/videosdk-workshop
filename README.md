@@ -15,7 +15,7 @@ To start your server, run `node server` in your terminal that's in the folder `w
 The application is built using Javascript. Outside of that, here is the main tech-stack that is used throughout: 
 
 - React 
-- Node.js
+- Node.js (^16)
 - Express
 - Zoom Video SDK 
 
@@ -39,7 +39,7 @@ When attending the workshop, make sure you have the following set up on your sys
 
 ## Branches/Sections
 
-You may notice that this repo has branches following the name cadence "Step _". Each step will have an added portion of completed code, ensuring you have a place to jump to if you ever fall behind. For this workhop, here is the outline of each step: 
+You may notice that this repo has branches following the name cadence "Step _". Each step will have an added portion of completed code, ensuring you have a place to jump to if you ever fall behind. **The master branch of this repo contains the completed project.** For this workhop, here is the outline of each step: 
 
 - **Step 0** - This step contains mostly boiler plate code to get us started, including pre-installed npm packages, UI code, etc.
 
@@ -51,7 +51,7 @@ You may notice that this repo has branches following the name cadence "Step _". 
   - `/server/Controllers/userControllers.js` should contain a function to generate our token, destructuring our request body to gain access to variables sent from the frontend, and saving the created signature to the res.locals object
   -`server/router.js` should now have `userControllers.generateToken` added to the post method 
 
-*If at any time you feel behind before we move to Step 2, feel free to check out to the 'Step 1' branch and work from there*
+*If at any time you feel behind before we move to Step 2, feel free to check out to the 'Step 1' branch, using the command `git checkout Step_1`, and work from there*
 
 - **Step 2** - In this step, we'll create and fill out `session.js` in the Home folder on the frontend and then add it to be rendered on `App.js`. At the end of this step, you should have: 
   - These variables inside the functional component `Session`: 
@@ -67,7 +67,7 @@ You may notice that this repo has branches following the name cadence "Step _". 
   - a button that calls `endSession` when clicked
   - App.js should now additionally render the `Session` component, with the path `/session`
 
-  *If at any time you feel behind before we move to Step 3, feel free to check out to the 'Step 2' branch and work from there*
+  *If at any time you feel behind before we move to Step 3, feel free to check out to the 'Step 2' branch,`git checkout Step_2`, and work from there*
 
 
   ` **Step 3** - In this last step, we'll add in our event listeners to notify when a user has joined the session. At the end of this step, you should have: 
