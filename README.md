@@ -1,6 +1,6 @@
 ## Introduction
 
-Hello and welcome. This appilcation is the first installment of our Developer Workshop Series, focused on getting your started with the Video SDK. To get started with this project, nagivate to the server folder and install necessary packages. Run the following commands in your terminal: 
+This application is the first installment of our Developer Workshop Series, focused on getting you started with the Video SDK. To get started with this project, navigate to the server folder and install necessary packages. Run the following commands in your terminal: 
 
 - `cd server`
 - `npm install`
@@ -9,7 +9,7 @@ At this point, to keep things organized between our front and backend, it is sug
 - `cd client`
 - `npm install`
 
-To start your server, run `node server` in your terminal that's in the folder `workshop-project/server`. To start your react application, navigate to the ternimal that's in the `workshop-project/client` folder and run `npm start`. Your server should be listening on port 4000 and your react app should be running on localhost:3000. 
+To start your server, run `node server` in your terminal that's in the folder `workshop-project/server`. To start your react application, navigate to the terminal that's in the `workshop-project/client` folder and run `npm start`. Your server should be listening on port 4000 and your react app should be running on localhost:3000. 
 
 ## Tech-Stack
 The application is built using Javascript. Outside of that, here is the main tech-stack that is used throughout: 
