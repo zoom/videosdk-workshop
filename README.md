@@ -5,6 +5,8 @@ This application is the first installment of our Developer Workshop Series, focu
 - `cd server`
 - `npm install`
 
+**Note: The server does *not* have hot reload, so you will need to quit and restart your server to reflect any changes made with it**
+
 At this point, to keep things organized between our front and backend, it is suggested to open up a second terminal window in your code editor. Run the following commands in your second terminal: 
 - `cd client`
 - `npm install`
