@@ -1,3 +1,5 @@
+*disclaimer: The following sample application is an open-source project shared by the app creator and meant for demonstration purposes **only**, not for production code use. Please use this sample application for inspiration, exploration, and experimentation at your own risk and enjoyment. You may reach out to the app creator and broader Zoom Developer community on https://devforum.zoom.us/ for technical discussion and assistance, but understand there is no service level agreement support for this application.*
+
 ## Introduction
 
 This application is the first installment of our Developer Workshop Series, focused on getting you started with the Video SDK. To get started with this project, navigate to the server folder and install necessary packages. Run the following commands in your terminal: 
