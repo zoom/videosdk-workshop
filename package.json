@@ -1,0 +1,49 @@
+{
+  "name": "Zoom Video SDK Workshop",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zoom/videosdk": "^1.8.10",
+    "antd": "^5.9.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "cors": "^2.8.5",
+    "customize-cra": "^1.0.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsrsasign": "^10.8.6",
+    "path": "^0.12.7",
+    "react": "^18.2.0",
+    "react-app-rewired": "^2.2.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0"
+  },
+  "dev-dependencies": {
+        "nodemon": "^3.0.1",
+        "react-scripts": "^5.0.1"
+   },
+  "scripts": {
+    "dev": "nodemon -x 'npm run build && node server/server.js' --ignore ./build",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
