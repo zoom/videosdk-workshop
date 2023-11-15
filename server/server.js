@@ -1,32 +1,25 @@
-const path = require("path");
-const express = require("express");
+import path from "path";
+import express from "express";
+import router from "./router.js";
+// const cors = require("cors");
+const { PORT = 3001 } = process.env;
+
 const app = express();
-const router = require("./router");
-const cors = require("cors");
-const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(cors());
-app.use(express.static(path.join(__dirname, "/../build")));
-app.use("/generate", router);
+// app.use(cors());
 
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "/../build/index.html"));
+// Serve API requests from the router
+app.use("/api", router);
+
+// Serve app production bundle
+app.use(express.static("dist"));
+
+// Handle client routing, return all requests to the app
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(__dirname, "/../dist/index.html"));
 });
 
-app.use((err, req, res, next) => {
-  const defaultErr = {
-    log: err,
-    status: 500,
-    message: { err: "An error occurred" },
-  };
-  const errorObj = Object.assign({}, defaultErr, err);
-  console.log(errorObj.log);
-  return res.status(errorObj.status).json(errorObj.message);
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
-module.exports = app;

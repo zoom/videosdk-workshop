@@ -1,11 +1,11 @@
-const express = require("express");
+import express from "express";
+import userControllers from "./Controllers/userControllers.js";
+
 const router = express.Router();
 
-const userControllers = require("./Controllers/userControllers");
-
 //add in middleware
-router.post("/", userControllers.generateToken, (req, res) => {
+router.post("/generate", userControllers.generateToken, (_, res) => {
   res.status(200).json(res.locals.signature);
 });
 
-module.exports = router;
+export default router;

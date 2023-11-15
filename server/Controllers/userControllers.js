@@ -1,5 +1,6 @@
-const KJUR = require("jsrsasign");
-require("dotenv").config();
+import KJUR from "jsrsasign";
+import dotenv from "dotenv";
+dotenv.config();
 
 const userControllers = {};
 
@@ -15,7 +16,6 @@ userControllers.generateToken = (req, res, next) => {
     const { topic, password, name, sessionKey, roleType } = req.body;
     const sdkKey = process.env.ZOOM_SDK_KEY;
     const sdkSecret = process.env.ZOOM_SDK_SECRET;
-
     const oPayload = {
       app_key: sdkKey,
       iat,
@@ -39,4 +39,4 @@ userControllers.generateToken = (req, res, next) => {
   }
 };
 
-module.exports = userControllers;
+export default userControllers;
