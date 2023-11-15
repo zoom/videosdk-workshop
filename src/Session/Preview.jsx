@@ -1,15 +1,12 @@
-import { useState } from "react";
 import { Modal } from "antd";
 
-const Preview = ({ handleOk }) => {
-  const [open] = useState(true);
-
+const Preview = () => {
   return (
     <>
       <Modal
-        open={open}
+        open={true}
         title="Preview"
-        onOk={handleOk}
+        onOk={() => {}}
         width={700}
         footer={(_, { OkBtn }) => (
           <>
