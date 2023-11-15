@@ -19,7 +19,7 @@ To run this application locally:
   - `mv .env-example .env`
 - Log into your [Video SDK developer account](https://developers.zoom.us/docs/video-sdk/developer-accounts/), and go to the [application dashboard](https://marketplace.zoom.us/)
   - Add `ZOOM_SDK_KEY` value to `.env`
-  - Add `ZOOM_SDK_SECRET` value `.env`
+  - Add `ZOOM_SDK_SECRET` value to `.env`
 - `npm install`
 - `npm run dev`
 
