@@ -23,4 +23,4 @@ To run this application locally:
 - `npm install`
 - `npm run dev`
 
-This will start the build process, and [Nodemon](https://nodemon.io/) to watch for all changes. It will run at localhost:4000.
+This will start an Express server and a React app using Vite with HMR.
