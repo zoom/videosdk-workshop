@@ -1,29 +1,34 @@
-import { useContext, useEffect } from "react";
-import { ClientContext } from "../Context/globalContext";
-import { Modal } from "antd";
+import { useState } from "react";
+import { Button, Modal } from "antd";
+import VideoSettings from "../Components/VideoSettings";
+import AudioSettings from "../Components/AudioSettings";
 
-const Preview = ({ handleOk }) => {
-  const uitoolkit = useContext(ClientContext);
-
-  useEffect(() => {
-    let previewContainer = document.getElementById("preview");
-    uitoolkit.openPreview(previewContainer);
-    return () => uitoolkit.closePreview(previewContainer);
-  }, [uitoolkit]);
+const Preview = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       <Modal
-        open={true}
-        title="Preview"
+        title="Camera Preview"
+        open={isModalOpen}
         onOk={handleOk}
-        width={700}
-        footer={(_, { OkBtn }) => (
-          <>
-            <OkBtn />
-          </>
-        )}
+        onCancel={handleCancel}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Back
+          </Button>,
+          <Button key="join" type="primary" onClick={handleOk}>
+            Join
+          </Button>,
+        ]}
       >
-        <div id="preview"></div>
+        <VideoSettings />
+        <AudioSettings />
       </Modal>
     </>
   );

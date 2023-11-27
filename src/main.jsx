@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { ClientContext } from "./Context/globalContext";
-import uitoolkit from "@zoom/videosdk-ui-toolkit";
-import "@zoom/videosdk-ui-toolkit/dist/videosdk-ui-toolkit.css";
+import ZoomVideo from "@zoom/videosdk";
 
+const client = ZoomVideo.createClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ClientContext.Provider value={uitoolkit}>
+    <ClientContext.Provider value={client}>
       <App />
     </ClientContext.Provider>
   </React.StrictMode>

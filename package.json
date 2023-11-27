@@ -4,7 +4,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@zoom/videosdk-ui-toolkit": "^1.9.5",
+    "@ant-design/icons": "^5.2.6",
+    "@zoom/videosdk": "^1.8.10",
     "antd": "^5.9.2",
     "dotenv": "^10.0.0",
     "express": "^4.18.2",
@@ -13,7 +14,7 @@
     "react-router-dom": "^6.18.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.0.4",
+    "@vitejs/plugin-react": "^4.2.0",
     "concurrently": "^8.2.2",
     "eslint": "^8.46.0",
     "eslint-plugin-react": "^7.33.1",
@@ -23,18 +24,10 @@
     "nodemon": "^3.0.1",
     "prettier": "^3.1.0",
     "rimraf": "^5.0.5",
-    "vite": "^4.4.8"
+    "vite": "^5.0.2"
   },
   "type": "module",
   "scripts": {
-    "clean": "rimraf dist",
-    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
-    "client:dev": "vite",
-    "server:dev": "nodemon server/server.js",
-    "client:build": "vite build",
-    "build": "npm run server:build && npm run client:build",
-    "serve": "vite preview",
-    "test": "prettier --check . && eslint .",
-    "start": "node server/server.js"
+    "dev": "vite"
   }
 }

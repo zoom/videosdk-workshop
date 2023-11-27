@@ -7,25 +7,17 @@ import Video from "./Video.jsx";
 import "./Session.css";
 
 const Session = () => {
-  const [state, updateState] = useState("preview");
+  const [state] = useState("preview");
   const meetingArgs = useContext(UserContext);
   const navigate = useNavigate();
-
-  const handleJoin = () => {
-    console.log("Session joined");
-  };
-  const handleClose = () => {
-    console.log("Session closed");
-    navigate("/");
-  };
 
   useEffect(() => {
     if (meetingArgs.videoSDKJWT === "") navigate("/");
   }, [meetingArgs.videoSDKJWT, navigate]);
   if (state === "preview")
-    return <Preview handleOk={() => updateState("video")} />;
+    return <Preview />;
   if (state === "video")
-    return <Video handleClose={handleClose} handleJoin={handleJoin} />;
+    return <Video />;
 };
 
 export default Session;

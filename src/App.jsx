@@ -4,12 +4,11 @@ import Home from "./Home";
 import Session from "./Session";
 import "./App.css";
 
-var meetingArgs = {
-  videoSDKJWT: "",
-  sessionName: "My Zoom Session",
-  userName: "",
-  sessionPasscode: "",
-  features: ["video", "audio", "settings", "users", "chat"],
+const meetingArgs = {
+  topic: "Zoom_Workshop",
+  name: "",
+  password: "",
+  roleType: 1||0,
 };
 
 const App = () => {

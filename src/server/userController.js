@@ -2,9 +2,7 @@ import KJUR from "jsrsasign";
 import dotenv from "dotenv";
 dotenv.config();
 
-const userControllers = {};
-
-userControllers.generateToken = (req, res, next) => {
+const generateToken = (req, res, next) => {
   try {
     let signature = "";
     const iat = Math.round(new Date().getTime() / 1000);
@@ -39,4 +37,4 @@ userControllers.generateToken = (req, res, next) => {
   }
 };
 
-export default userControllers;
+export default { generateToken };
