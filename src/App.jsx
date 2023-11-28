@@ -4,10 +4,18 @@ import Home from "./Home";
 import Session from "./Session";
 import "./App.css";
 
+// what is the full scope of this context?
+const userDetails = {
+  topic: "Zoom_Workshop",
+  name: "",
+  password: "",
+  roleType: 1 || 0,
+};
+
 const App = () => {
   return (
     <div>
-      <UserContext.Provider>
+      <UserContext.Provider value={userDetails}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
