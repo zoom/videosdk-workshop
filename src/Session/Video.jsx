@@ -1,10 +1,12 @@
 import { useState } from "react";
 import GalleryView from "../Components/Video/GalleryView";
 import RibbonView from "../Components/Video/RibbonView";
-import { AppstoreFilled, UserOutlined } from "@ant-design/icons";
 import { Button, Flex, Tabs } from "antd";
 import VideoSettings from "../Components/Video/VideoSettings.jsx";
 import AudioSettings from "../Components/Audio/AudioSettings.jsx";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWindowMaximize, faGrip } from "@fortawesome/free-solid-svg-icons";
 
 // clean up styles
 
@@ -45,7 +47,7 @@ const Video = ({ leave }) => {
             {
               label: (
                 <span>
-                  <UserOutlined />
+                  <FontAwesomeIcon icon={faWindowMaximize} />
                 </span>
               ),
               children: <RibbonView />,
@@ -54,7 +56,7 @@ const Video = ({ leave }) => {
             {
               label: (
                 <span>
-                  <AppstoreFilled />
+                  <FontAwesomeIcon icon={faGrip} />
                 </span>
               ),
               children: <GalleryView />,

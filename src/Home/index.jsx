@@ -4,9 +4,6 @@ import { UserContext } from "../Context/Contexts";
 import { Form, Input, Button, Checkbox } from "antd";
 import "./Home.css";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFile } from '@fortawesome/free-solid-svg-icons'
-
 const Home = () => {
   const [username, updateUsername] = useState("");
   const [password, updatePassword] = useState("");
@@ -45,7 +42,6 @@ const Home = () => {
     <div className="login-page">
       <div className="login-box">
         <div>
-        <FontAwesomeIcon icon={faFile} />
           <Form
             name="login-form"
             initialValues={{

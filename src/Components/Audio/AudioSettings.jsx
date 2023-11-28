@@ -1,14 +1,18 @@
 import IconSettingsButton from "../_Base/IconSettingsButton";
-import { AudioFilled, AudioMutedOutlined } from "@ant-design/icons";
+import {
+  faMicrophone,
+  faMicrophoneSlash,
+} from "@fortawesome/free-solid-svg-icons";
 
 // will also need to track speaker - different update?
 // track mute/unmute
-
-const AudioSettings = ({ menuItems = [] }) => {
+// callbacks for the click events - switching devices, mute/unmute
+const AudioSettings = ({ menuItems = [], on = true }) => {
   return (
     <IconSettingsButton
-      OnIcon={AudioFilled}
-      OffIcon={AudioMutedOutlined}
+      onIcon={faMicrophone}
+      offIcon={faMicrophoneSlash}
+      on={on}
       items={menuItems}
     />
   );

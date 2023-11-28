@@ -1,17 +1,9 @@
 import { useState } from "react";
 import { Dropdown, Space } from "antd";
-import {
-  QuestionCircleFilled,
-  CaretUpFilled,
-  CaretDownFilled,
-} from "@ant-design/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
-const IconSettingsButton = ({
-  OnIcon = QuestionCircleFilled,
-  OffIcon = QuestionCircleFilled,
-  on = true,
-  items,
-}) => {
+const IconSettingsButton = ({ onIcon, offIcon, on = true, items }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(on);
   // getting the items
@@ -32,12 +24,20 @@ const IconSettingsButton = ({
     }
   };
 
-  const menuArrow = open ? <CaretUpFilled /> : <CaretDownFilled />;
-  const Icon = on ? OnIcon : OffIcon;
+  const menuArrow = open ? (
+    <FontAwesomeIcon icon={faCaretUp} />
+  ) : (
+    <FontAwesomeIcon icon={faCaretDown} />
+  );
+  const icon = on ? onIcon : offIcon;
   return (
     <Space wrap>
       <Space>
-        <Icon style={{ fontSize: "2em" }} onClick={() => setActive(!active)} />
+        <FontAwesomeIcon
+          style={{ fontSize: "2em" }}
+          onClick={() => setActive(!active)}
+          icon={icon}
+        />
         <Dropdown
           menu={{ items, onClick }}
           trigger={"click"}

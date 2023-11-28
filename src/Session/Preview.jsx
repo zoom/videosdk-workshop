@@ -14,10 +14,11 @@ import AudioSettings from "../Components/Audio/AudioSettings.jsx";
 // update user with device selection and off/on
 
 // get place holders in for video and buttons as needed
+//    <Divider orientation="left">Horizontal</Divider>
 
 const Preview = ({ join }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [_, ZoomVideo] = useContext(ClientContext);
+  const { ZoomVideo } = useContext(ClientContext);
   const [user, setUser] = useContext(UserContext);
   console.log(user);
 

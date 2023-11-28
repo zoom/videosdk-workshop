@@ -1,15 +1,17 @@
 import IconSettingsButton from "../_Base/IconSettingsButton";
-import { VideoCameraFilled, VideoCameraOutlined } from "@ant-design/icons";
+import { faVideo, faVideoSlash } from "@fortawesome/free-solid-svg-icons";
 
 // need to also track off/on
 // make sure the video is reveresed for me, normal for everyone else
 // blur backgrounds? anything else?
+// callback methods for play/stop video, resizing participant rendering
 
-const VideoSettings = ({ menuItems = [] }) => {
+const VideoSettings = ({ menuItems = [], on = true }) => {
   return (
     <IconSettingsButton
-      OnIcon={VideoCameraFilled}
-      OffIcon={VideoCameraOutlined}
+      onIcon={faVideo}
+      offIcon={faVideoSlash}
+      on={on}
       items={menuItems}
     />
   );
