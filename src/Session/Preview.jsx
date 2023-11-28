@@ -18,10 +18,9 @@ import AudioSettings from "../Components/Audio/AudioSettings.jsx";
 
 const Preview = ({ join }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const { ZoomVideo } = useContext(ClientContext);
+  const [client, ZoomVideo] = useContext(ClientContext);
   const [user, setUser] = useContext(UserContext);
-  console.log(user);
-
+  const [cameraPreview, setCameraPreview] = useState(false);
   useEffect(() => {
     async function getDevices() {
       let devices = await ZoomVideo.getDevices();
@@ -61,7 +60,7 @@ const Preview = ({ join }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
+  console.log(client);
   return (
     <>
       <Modal
@@ -77,7 +76,7 @@ const Preview = ({ join }) => {
           </Button>,
         ]}
       >
-        <VideoSettings menuItems={user?.devices?.cameras} />
+        <VideoSettings menuItems={user?.devices?.cameras} on={cameraPreview} />
         <AudioSettings menuItems={user?.devices?.speakers} />
       </Modal>
     </>

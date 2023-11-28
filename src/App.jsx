@@ -19,7 +19,7 @@ const userDetails = {
 const App = () => {
   const [user, setUser] = useState(userDetails);
   const value = [user, setUser];
-
+  // send notifiction context provider - provide sendNotification method
   return (
     <div>
       <UserContext.Provider value={value}>

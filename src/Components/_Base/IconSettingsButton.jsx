@@ -3,7 +3,7 @@ import { Dropdown, Space } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
-const IconSettingsButton = ({ onIcon, offIcon, on = true, items }) => {
+const IconSettingsButton = ({ onIcon, offIcon, on, items }) => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(on);
   // getting the items
@@ -14,6 +14,7 @@ const IconSettingsButton = ({ onIcon, offIcon, on = true, items }) => {
 
   const onClick = ({ key }) => {
     console.log(key);
+    // when clicked, it should pass back something to the parent, or update a specific context
     setOpen(false);
   };
 
