@@ -1,12 +1,5 @@
-import { useState } from "react";
-import { Dropdown, Space } from "antd";
-import {
-  VideoCameraFilled,
-  CaretUpFilled,
-  CaretDownFilled,
-} from "@ant-design/icons";
-
-// const onOpenChange = { open };
+import IconSettingsButton from "./IconSettingsButton";
+import { VideoCameraFilled } from "@ant-design/icons";
 
 // this is filled in from the videoSDK response
 const items = [
@@ -25,39 +18,7 @@ const items = [
 ];
 
 const VideoSettings = () => {
-  const [open, setOpen] = useState(true);
-
-  const onClick = ({ key }) => {
-    if (key === "3") {
-      setOpen(false);
-    }
-  };
-
-  const onOpenChange = (nextOpen, info) => {
-    if (info.source === "trigger" || nextOpen) {
-      setOpen(nextOpen);
-    }
-  };
-
-  const menuArrow = open ? <CaretUpFilled /> : <CaretDownFilled />;
-  return (
-    <Space wrap>
-      <Dropdown
-        menu={{ items, onClick }}
-        trigger={"click"}
-        onOpenChange={onOpenChange}
-        open={open}
-        placement="topLeft"
-      >
-        <a onClick={(e) => e.preventDefault()}>
-          <Space>
-            <VideoCameraFilled style={{ fontSize: "2em" }} />
-            {menuArrow}
-          </Space>
-        </a>
-      </Dropdown>
-    </Space>
-  );
+  return <IconSettingsButton OnIcon={VideoCameraFilled} items={items} />;
 };
 
 export default VideoSettings;
