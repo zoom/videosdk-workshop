@@ -30,7 +30,7 @@ const Session = () => {
       // do clean up here
       navigate("/");
     }
-  }, [state]);
+  }, [state, navigate]);
   // manage the session parts here
   // store contexts in localstorage?
   // what else needs to happen on this page specifically?

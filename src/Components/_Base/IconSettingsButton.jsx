@@ -9,10 +9,11 @@ import {
 const IconSettingsButton = ({
   OnIcon = QuestionCircleFilled,
   OffIcon = QuestionCircleFilled,
+  on = true,
   items,
 }) => {
   const [open, setOpen] = useState(false);
-  const [on, setOn] = useState(false);
+  const [active, setActive] = useState(on);
   // getting the items
   // what to do when the user picks something
   // is there a context to store this in?
@@ -36,7 +37,7 @@ const IconSettingsButton = ({
   return (
     <Space wrap>
       <Space>
-        <Icon style={{ fontSize: "2em" }} onClick={() => setOn(!on)} />
+        <Icon style={{ fontSize: "2em" }} onClick={() => setActive(!active)} />
         <Dropdown
           menu={{ items, onClick }}
           trigger={"click"}
