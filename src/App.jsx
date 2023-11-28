@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { UserContext } from "./Context/Contexts";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
@@ -6,16 +7,22 @@ import "./App.css";
 
 // what is the full scope of this context?
 const userDetails = {
-  topic: "Zoom_Workshop",
-  name: "",
-  password: "",
-  roleType: 1 || 0,
+  meetingDetails: {
+    sessionName: "Zoom_Workshop",
+    userName: "",
+    sessionPasscode: "",
+    sessionKey: "",
+    roleType: 0,
+  },
 };
 
 const App = () => {
+  const [user, setUser] = useState(userDetails);
+  const value = [user, setUser];
+
   return (
     <div>
-      <UserContext.Provider value={userDetails}>
+      <UserContext.Provider value={value}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />

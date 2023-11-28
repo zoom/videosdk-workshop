@@ -6,8 +6,13 @@ import {
   CaretDownFilled,
 } from "@ant-design/icons";
 
-const IconSettingsButton = ({ OnIcon = QuestionCircleFilled, items }) => {
+const IconSettingsButton = ({
+  OnIcon = QuestionCircleFilled,
+  OffIcon = QuestionCircleFilled,
+  items,
+}) => {
   const [open, setOpen] = useState(false);
+  const [on, setOn] = useState(false);
   // getting the items
   // what to do when the user picks something
   // is there a context to store this in?
@@ -20,28 +25,28 @@ const IconSettingsButton = ({ OnIcon = QuestionCircleFilled, items }) => {
   };
 
   const onOpenChange = (nextOpen, info) => {
+    console.log(nextOpen, info);
     if (info.source === "trigger" || nextOpen) {
       setOpen(nextOpen);
     }
   };
 
   const menuArrow = open ? <CaretUpFilled /> : <CaretDownFilled />;
+  const Icon = on ? OnIcon : OffIcon;
   return (
     <Space wrap>
-      <Dropdown
-        menu={{ items, onClick }}
-        trigger={"click"}
-        onOpenChange={onOpenChange}
-        open={open}
-        placement="topLeft"
-      >
-        <a onClick={(e) => e.preventDefault()}>
-          <Space>
-            <OnIcon style={{ fontSize: "2em" }} />
-            {menuArrow}
-          </Space>
-        </a>
-      </Dropdown>
+      <Space>
+        <Icon style={{ fontSize: "2em" }} onClick={() => setOn(!on)} />
+        <Dropdown
+          menu={{ items, onClick }}
+          trigger={"click"}
+          onOpenChange={onOpenChange}
+          open={open}
+          placement="topLeft"
+        >
+          <a onClick={(e) => e.preventDefault()}>{menuArrow}</a>
+        </Dropdown>
+      </Space>
     </Space>
   );
 };

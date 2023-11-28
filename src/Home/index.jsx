@@ -8,19 +8,19 @@ const Home = () => {
   const [username, updateUsername] = useState("");
   const [password, updatePassword] = useState("");
 
-  const meetingArgs = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
 
   const navigate = useNavigate();
-
+  const { meetingDetails } = user;
   const submitUserData = async () => {
-    meetingArgs.userName = username;
-    meetingArgs.sessionPasscode = password;
+    user.meetingDetails.userName = username;
+    meetingDetails.sessionPasscode = password;
 
     const jwtConfig = {
-      topic: meetingArgs.sessionName,
-      name: meetingArgs.userName,
-      password: meetingArgs.sessionPasscode,
-      sessionKey: meetingArgs.sessionPasscode,
+      topic: meetingDetails.sessionName,
+      name: meetingDetails.userName,
+      password: meetingDetails.sessionPasscode,
+      sessionKey: meetingDetails.sessionPasscode,
       roleType: 1,
     };
 
@@ -33,7 +33,8 @@ const Home = () => {
 
     let response = await fetch("api/generate", requestOptions);
     let sig = await response.json();
-    meetingArgs.videoSDKJWT = sig;
+    meetingDetails.videoSDKJWT = sig;
+    setUser({ ...user, meetingDetails });
     navigate("/session");
   };
 
