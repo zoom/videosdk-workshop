@@ -1,20 +1,13 @@
-import { UserContext } from "./Context/globalContext";
+import { UserContext } from "./Context/Contexts";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Session from "./Session";
 import "./App.css";
 
-const meetingArgs = {
-  topic: "Zoom_Workshop",
-  name: "",
-  password: "",
-  roleType: 1||0,
-};
-
 const App = () => {
   return (
     <div>
-      <UserContext.Provider value={meetingArgs}>
+      <UserContext.Provider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />

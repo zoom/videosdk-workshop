@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../Context/globalContext";
+import { UserContext } from "../Context/Contexts.js";
 
 import Preview from "./Preview.jsx";
 import Video from "./Video.jsx";
@@ -14,10 +14,8 @@ const Session = () => {
   useEffect(() => {
     if (meetingArgs.videoSDKJWT === "") navigate("/");
   }, [meetingArgs.videoSDKJWT, navigate]);
-  if (state === "preview")
-    return <Preview />;
-  if (state === "video")
-    return <Video />;
+  if (state === "preview") return <Preview />;
+  if (state === "video") return <Video />;
 };
 
 export default Session;

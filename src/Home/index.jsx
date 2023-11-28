@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../Context/globalContext";
+import { UserContext } from "../Context/Contexts";
 import { Form, Input, Button, Checkbox } from "antd";
 import "./Home.css";
 

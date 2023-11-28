@@ -1,4 +1,4 @@
-import IconSettingsButton from "./IconSettingsButton";
+import IconSettingsButton from "./Base/IconSettingsButton";
 import { AudioOutlined } from "@ant-design/icons";
 
 // this is filled in from the videoSDK response
