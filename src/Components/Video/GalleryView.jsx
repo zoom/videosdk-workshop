@@ -1,8 +1,15 @@
+import { Flex } from "antd";
+
 const GalleryView = () => {
   return (
-    <>
-      <h2>GalleryView</h2>
-    </>
+    <Flex vertical>
+      <Flex>
+        <h1>Gallery View Goes Here</h1>
+      </Flex>
+      <Flex>
+        <h1>Navigation Buttons here?</h1>
+      </Flex>
+    </Flex>
   );
 };
 

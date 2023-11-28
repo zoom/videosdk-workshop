@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { ClientContext } from "../Context/Contexts.js";
+import { useNavigate } from "react-router-dom";
 
 import Preview from "./Preview.jsx";
 import Video from "./Video.jsx";
@@ -13,6 +14,7 @@ const Session = () => {
   const [state, setState] = useState("PreSession");
   // const [userDetails] = useContext(UserContext);
   const [client] = useContext(ClientContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function initClient() {
@@ -22,9 +24,13 @@ const Session = () => {
 
     initClient();
   }, [client]);
-  // console.log(userDetails);
-  // console.log(client);
 
+  useEffect(() => {
+    if (state === "PostSession") {
+      // do clean up here
+      navigate("/");
+    }
+  }, [state]);
   // manage the session parts here
   // store contexts in localstorage?
   // what else needs to happen on this page specifically?

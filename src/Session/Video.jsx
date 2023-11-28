@@ -1,22 +1,87 @@
+import { useState } from "react";
 import GalleryView from "../Components/Video/GalleryView";
 import RibbonView from "../Components/Video/RibbonView";
+import { AppstoreFilled, UserOutlined } from "@ant-design/icons";
+import { Button, Flex, Tabs } from "antd";
+import VideoSettings from "../Components/Video/VideoSettings.jsx";
+import AudioSettings from "../Components/Audio/AudioSettings.jsx";
 
-const Video = () => {
+// clean up styles
+
+const Video = ({ leave }) => {
+  const [activeKey, setActiveKey] = useState("ribbon");
+
+  const onChange = (key) => {
+    setActiveKey(key);
+  };
+
   return (
-    <>
-      <h1>Video</h1>
-      <GalleryView />
-      <RibbonView />
-    </>
+    <Flex
+      gap="small"
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        width: "100vw",
+        background: "#d9edff",
+      }}
+      vertical
+    >
+      <Flex
+        style={{
+          flex: 1,
+          width: "100%",
+        }}
+        vertical
+      >
+        <Tabs
+          centered
+          size="small"
+          maxHeight="15px"
+          onChange={onChange}
+          activeKey={activeKey}
+          type="card"
+          items={[
+            {
+              label: (
+                <span>
+                  <UserOutlined />
+                </span>
+              ),
+              children: <RibbonView />,
+              key: "ribbon",
+            },
+            {
+              label: (
+                <span>
+                  <AppstoreFilled />
+                </span>
+              ),
+              children: <GalleryView />,
+              key: "gallery",
+            },
+          ]}
+        />
+      </Flex>
+
+      <Flex
+        style={{
+          height: "75px",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <VideoSettings menuItems={[]} />
+        <AudioSettings menuItems={[]} />
+        <Button onClick={leave}>Leave</Button>
+      </Flex>
+    </Flex>
   );
 };
-// this controls the gallery view
-// bottom buttons - how do these get managed
 
-// this will need to have the main speaker video presenter view
-// participants view should be either a scrollable bar, or show all as grid
+// bottom buttons - how do these get managed
 // this container will manage the two rendered participant views, etc.
-// it will also have the settings buttons as well
-// hopefully the context will maintain these items properly
+// hopefully the context will maintain these items properly?
 
 export default Video;

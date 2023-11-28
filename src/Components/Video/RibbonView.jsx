@@ -1,17 +1,18 @@
+import { Flex } from "antd";
+
 const RibbonView = () => {
   return (
-    <Layout>
-      <Header style={headerStyle}>Header</Header>
-      <Content style={contentStyle}>Content</Content>
-      <Footer style={footerStyle}>Footer</Footer>
-    </Layout>
+    <Flex vertical>
+      <Flex>
+        <h1>Ribbon Section Here</h1>
+      </Flex>
+      <Flex>
+        <h1>Active Speaker Here</h1>
+      </Flex>
+    </Flex>
   );
 };
 
 export default RibbonView;
 
-// <Layout>
-//   <Header style={headerStyle}>Header</Header>
-//   <Content style={contentStyle}>Content</Content>
-//   <Footer style={footerStyle}>Footer</Footer>
-// </Layout>;
+// this will need to have the main speaker video presenter view
