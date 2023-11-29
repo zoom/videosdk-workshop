@@ -1,22 +1,22 @@
 import IconSettingsButton from "../_Base/IconSettingsButton";
-import {
-  faMicrophone,
-  faMicrophoneSlash,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { ClientContext, MediaContext } from "../../Context/Contexts.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAntdItem } from "../../utils";
 import { useDevices } from "../../Hooks/useDevices.js";
+import {
+  faMicrophone,
+  faMicrophoneSlash,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 //localAudio or stream
 const AudioSettings = ({ localAudio }) => {
-  console.log(localAudio.audioStream);
-  console.log(localAudio.isAudioStarted);
   const [media] = useContext(MediaContext);
   const [_, ZoomVideo] = useContext(ClientContext);
   const { mics, speakers } = useDevices();
+
+  localAudio.start();
 
   const toggleMic = async () => {
     if (!localAudio.isAudioStarted) {
@@ -30,13 +30,13 @@ const AudioSettings = ({ localAudio }) => {
     }
   };
 
-  const switchAudio = async (deviceId, type) => {
-    console.log("switchAudio", localAudio);
+  const switchAudio = (deviceId, type) => {
     if (localAudio.isAudioStarted) {
       localAudio.stop();
     }
     ZoomVideo.createLocalAudioTrack(deviceId);
     localAudio.start();
+    localAudio.unmute();
   };
 
   let menuItems = [];

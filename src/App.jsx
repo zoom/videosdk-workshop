@@ -15,20 +15,15 @@ const userDetails = {
 };
 
 const mediaDetails = {
-  cameras: [],
-  speakers: [],
-  mics: [],
   activeSpeaker: "",
   activeMic: "",
   activeCamera: "",
-  videoOn: false,
-  audioOn: false,
-  audioStarted: false,
 };
 
 const App = () => {
   const [user, setUser] = useState(userDetails);
   const [media, setMedia] = useState(mediaDetails);
+
   return (
     <div>
       <UserContext.Provider value={[user, setUser]}>

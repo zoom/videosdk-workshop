@@ -10,11 +10,7 @@ import AudioSettings from "../Components/Audio/AudioSettings.jsx";
 
 // handle the device changes as well
 // auto flip the preview - having it not flipped is uncomfortable
-// modal needs to move out of this file
 // update user with device selection and off/on
-
-// get place holders in for video and buttons as needed
-//    <Divider orientation="left">Horizontal</Divider>
 
 const Preview = ({ join }) => {
   const [_, ZoomVideo] = useContext(ClientContext);
