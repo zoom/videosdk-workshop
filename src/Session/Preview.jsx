@@ -30,6 +30,7 @@ const Preview = ({ join }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   return (
     <Flex vertical>
       <h1>Camera Preview</h1>

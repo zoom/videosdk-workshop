@@ -12,38 +12,33 @@ import { useDevices } from "../../Hooks/useDevices.js";
 
 //localAudio or stream
 const AudioSettings = ({ localAudio }) => {
-  const [media, setMedia] = useContext(MediaContext);
+  console.log(localAudio.audioStream);
+  console.log(localAudio.isAudioStarted);
+  const [media] = useContext(MediaContext);
   const [_, ZoomVideo] = useContext(ClientContext);
   const { mics, speakers } = useDevices();
 
   const toggleMic = async () => {
-    if (!media.audioStarted) {
-      await localAudio.start();
-      await localAudio.unmute();
-      setMedia({ ...media, audioStarted: true, audioOn: true });
+    if (!localAudio.isAudioStarted) {
+      localAudio.start();
     }
-    if (media.audioStarted === true && !media.audioOn) {
-      await localAudio.unmute();
-      setMedia({ ...media, audioOn: true });
+    if (!localAudio.isMicUnmuted) {
+      localAudio.unmute();
     }
-
-    if (media.audioStarted === true && media.audioOn === true) {
-      await localAudio.mute();
-      setMedia({ ...media, audioOn: false });
+    if (localAudio.isMicUnmuted) {
+      localAudio.mute();
     }
   };
 
   const switchAudio = async (deviceId, type) => {
-    // check fore mic || speaker - this would be great in the hook as well
-    if (type === "microphone") {
-      await localAudio.stop();
-      ZoomVideo.createLocalAudioTrack(deviceId);
-      await localAudio.start();
-      setMedia({ ...media, activeMic: deviceId });
-    } else if (type === "speaker") {
-      setMedia({ ...media, activeSpeaker: deviceId });
+    console.log("switchAudio", localAudio);
+    if (localAudio.isAudioStarted) {
+      localAudio.stop();
     }
+    ZoomVideo.createLocalAudioTrack(deviceId);
+    localAudio.start();
   };
+
   let menuItems = [];
   if (mics?.length > 0) {
     menuItems.push(
@@ -87,7 +82,7 @@ const AudioSettings = ({ localAudio }) => {
     <IconSettingsButton
       onIcon={faMicrophone}
       offIcon={faMicrophoneSlash}
-      isOn={media.audioOn}
+      isOn={localAudio.isMicUnmuted}
       menuItems={menuItems}
       onToggle={toggleMic}
       onSelect={switchAudio}

@@ -12,18 +12,16 @@ import { useDevices } from "../../Hooks/useDevices.js";
 
 //localAudio or stream
 const CameraSettings = ({ videoRef, localVideo }) => {
-  const [media, setMedia] = useContext(MediaContext);
+  const [media] = useContext(MediaContext);
   const { cameras } = useDevices();
 
   const toggleCamera = async () => {
     if (media?.videoOn === true) {
       await localVideo.stop();
-      setMedia({ ...media, videoOn: false });
     }
 
     if (!media?.videoOn) {
       await localVideo.start(videoRef.current);
-      setMedia({ ...media, videoOn: true });
     }
   };
 
