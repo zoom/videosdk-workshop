@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import {ClientContext} from '../Context/Contexts'
 import GalleryView from "../Components/Video/GalleryView";
 import RibbonView from "../Components/Video/RibbonView";
 import { Button, Flex, Tabs } from "antd";
@@ -12,10 +13,24 @@ import { faWindowMaximize, faGrip } from "@fortawesome/free-solid-svg-icons";
 
 const Video = ({ leave }) => {
   const [activeKey, setActiveKey] = useState("ribbon");
+  const [client, ZoomVideo] = useContext(ClientContext);
+
+  useEffect(() => {
+      client.init('US-EN','CDN').then(() => {
+      console.log('session created');
+    }).catch((err) => {
+       console.log(err)
+    })
+    return () => {
+      ZoomVideo.destroyClient()
+    }
+  }, [])
 
   const onChange = (key) => {
     setActiveKey(key);
   };
+
+
 
   return (
     <Flex
