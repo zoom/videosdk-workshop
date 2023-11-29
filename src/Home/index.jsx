@@ -11,16 +11,13 @@ const Home = () => {
   const [user, setUser] = useContext(UserContext);
 
   const navigate = useNavigate();
-  const { meetingDetails } = user;
-  const submitUserData = async () => {
-    user.meetingDetails.userName = username;
-    meetingDetails.sessionPasscode = password;
 
+  const submitUserData = async () => {
     const jwtConfig = {
-      topic: meetingDetails.sessionName,
-      name: meetingDetails.userName,
-      password: meetingDetails.sessionPasscode,
-      sessionKey: meetingDetails.sessionPasscode,
+      topic: user.sessionName,
+      name: username,
+      password: password,
+      sessionKey: password,
       roleType: 1,
     };
 
@@ -33,8 +30,8 @@ const Home = () => {
 
     let response = await fetch("api/generate", requestOptions);
     let sig = await response.json();
-    meetingDetails.videoSDKJWT = sig;
-    setUser({ ...user, meetingDetails });
+    user.videoSDKJWT = sig;
+    setUser(user);
     navigate("/session");
   };
 
@@ -48,7 +45,6 @@ const Home = () => {
               remember: true,
             }}
             onFinish={submitUserData}
-            // onFinishFailed={onSubmitFailed}
             autoComplete="off"
           >
             <p>Login to the Dashboard</p>

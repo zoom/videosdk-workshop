@@ -2,8 +2,8 @@ import { useState } from "react";
 import GalleryView from "../Components/Video/GalleryView";
 import RibbonView from "../Components/Video/RibbonView";
 import { Button, Flex, Tabs } from "antd";
-import VideoSettings from "../Components/Video/VideoSettings.jsx";
-import AudioSettings from "../Components/Audio/AudioSettings.jsx";
+// import CameraSettings from "../Components/Video/VideoSettings.jsx";
+// import AudioSettings from "../Components/Audio/AudioSettings.jsx";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWindowMaximize, faGrip } from "@fortawesome/free-solid-svg-icons";
@@ -39,7 +39,7 @@ const Video = ({ leave }) => {
         <Tabs
           centered
           size="small"
-          maxHeight="15px"
+          height="15px"
           onChange={onChange}
           activeKey={activeKey}
           type="card"
@@ -74,8 +74,6 @@ const Video = ({ leave }) => {
           justifyContent: "center",
         }}
       >
-        <VideoSettings menuItems={[]} />
-        <AudioSettings menuItems={[]} />
         <Button onClick={leave}>Leave</Button>
       </Flex>
     </Flex>
