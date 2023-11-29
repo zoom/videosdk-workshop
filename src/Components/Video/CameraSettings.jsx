@@ -8,10 +8,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAntdItem } from "../../utils";
 import { useContext } from "react";
 import { MediaContext } from "../../Context/Contexts.js";
+import { useDevices } from "../../Hooks/useDevices.js";
 
 //localAudio or stream
 const CameraSettings = ({ videoRef, localVideo }) => {
   const [media, setMedia] = useContext(MediaContext);
+  const { cameras } = useDevices();
 
   const toggleCamera = async () => {
     if (media?.videoOn === true) {
@@ -29,13 +31,13 @@ const CameraSettings = ({ videoRef, localVideo }) => {
     await localVideo.switchCamera(deviceId);
   };
 
-  const menuItems = media?.cameras &&
-    media?.cameras.length > 0 && [
+  const menuItems = cameras &&
+    cameras.length > 0 && [
       getAntdItem(
         "Select a Camera",
         "camera",
         null,
-        media?.cameras.map((item) =>
+        cameras.map((item) =>
           getAntdItem(
             item.label,
             `camera|${item.deviceId}`,

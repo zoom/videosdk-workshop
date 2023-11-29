@@ -1,7 +1,7 @@
-import { useEffect, useState, useContext, useCallback, useRef } from "react";
+import { useContext, useRef } from "react";
 import { Button, Flex } from "antd";
-import { ClientContext, MediaContext } from "../Context/Contexts.js";
-
+import { ClientContext } from "../Context/Contexts.js";
+import { useDevices } from "../Hooks/useDevices.js";
 // this page manages everything related to the preview, and stores
 // the media setup for the stream to use and start from
 
@@ -18,57 +18,10 @@ import AudioSettings from "../Components/Audio/AudioSettings.jsx";
 
 const Preview = ({ join }) => {
   const [_, ZoomVideo] = useContext(ClientContext);
-  const [media, setMedia] = useContext(MediaContext);
+  const { cameras, mics } = useDevices();
   const videoRef = useRef(null);
-  let localAudio = ZoomVideo.createLocalAudioTrack();
-  let localVideo = ZoomVideo.createLocalVideoTrack(media?.cameras[0]?.deviceId);
-
-  async function getDevices() {
-    let devices = await ZoomVideo.getDevices();
-    const cameraDevices = devices.filter((device) => {
-      return device.kind === "videoinput";
-    });
-    const micDevices = devices.filter((device) => {
-      return device.kind === "audioinput";
-    });
-    const speakerDevices = devices.filter((device) => {
-      return device.kind === "audiooutput";
-    });
-    return {
-      mics: micDevices.map((item) => {
-        return { label: item.label, deviceId: item.deviceId };
-      }),
-      speakers: speakerDevices.map((item) => {
-        return { label: item.label, deviceId: item.deviceId };
-      }),
-      cameras: cameraDevices.map((item) => {
-        return { label: item.label, deviceId: item.deviceId };
-      }),
-    };
-  }
-
-  useEffect(() => {
-    getDevices().then((devices) => {
-      let newMedia = {
-        ...media,
-        mics: devices.mics,
-        cameras: devices.cameras,
-        speakers: devices.speakers,
-      };
-
-      if (devices.speakers.length > 0) {
-        newMedia.activeSpeaker = devices.speakers[0].deviceId;
-      }
-      if (devices.mics.length > 0) {
-        newMedia.activeMic = devices.mics[0].deviceId;
-      }
-      if (devices.cameras.length > 0) {
-        newMedia.activeCamera = devices.cameras[0].deviceId;
-      }
-
-      setMedia(newMedia);
-    });
-  }, []);
+  let localAudio = ZoomVideo.createLocalAudioTrack(mics?.[0]?.deviceId);
+  let localVideo = ZoomVideo.createLocalVideoTrack(cameras?.[0]?.deviceId);
 
   const handleJoin = () => {
     // join the session here?
@@ -77,7 +30,6 @@ const Preview = ({ join }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  console.log(media);
   return (
     <Flex vertical>
       <h1>Camera Preview</h1>

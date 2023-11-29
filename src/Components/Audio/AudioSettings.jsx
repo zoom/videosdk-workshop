@@ -8,11 +8,13 @@ import { useContext } from "react";
 import { ClientContext, MediaContext } from "../../Context/Contexts.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAntdItem } from "../../utils";
+import { useDevices } from "../../Hooks/useDevices.js";
 
 //localAudio or stream
 const AudioSettings = ({ localAudio }) => {
   const [media, setMedia] = useContext(MediaContext);
   const [_, ZoomVideo] = useContext(ClientContext);
+  const { mics, speakers } = useDevices();
 
   const toggleMic = async () => {
     if (!media.audioStarted) {
@@ -32,7 +34,7 @@ const AudioSettings = ({ localAudio }) => {
   };
 
   const switchAudio = async (deviceId, type) => {
-    // check fore mic || speaker
+    // check fore mic || speaker - this would be great in the hook as well
     if (type === "microphone") {
       await localAudio.stop();
       ZoomVideo.createLocalAudioTrack(deviceId);
@@ -43,13 +45,13 @@ const AudioSettings = ({ localAudio }) => {
     }
   };
   let menuItems = [];
-  if (media?.mics?.length > 0) {
+  if (mics?.length > 0) {
     menuItems.push(
       getAntdItem(
         "Select a Microphone",
         "microphone",
         undefined,
-        media?.mics.map((i) =>
+        mics.map((i) =>
           getAntdItem(
             i.label,
             `microphone|${i.deviceId}`,
@@ -61,13 +63,13 @@ const AudioSettings = ({ localAudio }) => {
     );
     menuItems.push(getAntdItem("", "d1", undefined, undefined, "divider"));
   }
-  if (media?.speakers?.length > 0) {
+  if (speakers?.length > 0) {
     menuItems.push(
       getAntdItem(
         "Select a speaker",
         "speaker",
         undefined,
-        media?.speakers.map((i) =>
+        speakers.map((i) =>
           getAntdItem(
             i.label,
             `speaker|${i.deviceId}`,
