@@ -12,10 +12,9 @@ import { faWindowMaximize, faGrip } from "@fortawesome/free-solid-svg-icons";
 // clean up styles
 
 const Video = ({ leave }) => {
-  const user = useContext(UserContext);
-  const {userName, topic, JWT} = user.userInfo;
-  console.log('userinfo', user.userInfo)
-
+  const {user, setUser} = useContext(UserContext);
+  const {userName, topic, JWT} = user;
+// console.log('userInfo', userName, topic, JWT)
   const [activeKey, setActiveKey] = useState("ribbon");
   const { client, ZoomVideo } = useContext(ClientContext);
   const { selectedCamera, videoOn } = useContext(DeviceContext);

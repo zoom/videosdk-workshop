@@ -13,7 +13,7 @@ const App = () => {
     passcode: '',
     JWT: ''
   }
-  const [userJWT, setUserJWT] = useState("");
+  const [user, setUser] = useState(userInfo)
   const [selectedCamera, setSelectedCamera] = useState("");
   const [selectedSpeaker, setSelectedSpeaker] = useState("");
   const [selectedMic, setSelectedMic] = useState("");
@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <div>
-      <UserContext.Provider value={{ userJWT, setUserJWT, userInfo }}>
+      <UserContext.Provider value={{ user, setUser }}>
         <DeviceContext.Provider
           value={{
             selectedCamera,
