@@ -6,6 +6,13 @@ import Session from "./Session";
 import "./App.css";
 
 const App = () => {
+  const userInfo = {
+    topic: "Zoom_Workshop",
+    roleType: 1,
+    userName: '',
+    passcode: '',
+    JWT: ''
+  }
   const [userJWT, setUserJWT] = useState("");
   const [selectedCamera, setSelectedCamera] = useState("");
   const [selectedSpeaker, setSelectedSpeaker] = useState("");
@@ -14,7 +21,7 @@ const App = () => {
 
   return (
     <div>
-      <UserContext.Provider value={{ userJWT, setUserJWT }}>
+      <UserContext.Provider value={{ userJWT, setUserJWT, userInfo }}>
         <DeviceContext.Provider
           value={{
             selectedCamera,

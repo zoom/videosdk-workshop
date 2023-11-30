@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { ClientContext, DeviceContext } from "../Context/Contexts";
+import { ClientContext, DeviceContext, UserContext } from "../Context/Contexts";
 import GalleryView from "../Components/Video/GalleryView";
 import RibbonView from "../Components/Video/RibbonView";
 import { Button, Flex, Tabs } from "antd";
@@ -12,6 +12,10 @@ import { faWindowMaximize, faGrip } from "@fortawesome/free-solid-svg-icons";
 // clean up styles
 
 const Video = ({ leave }) => {
+  const user = useContext(UserContext);
+  const {userName, topic, JWT} = user.userInfo;
+  console.log('userinfo', user.userInfo)
+
   const [activeKey, setActiveKey] = useState("ribbon");
   const { client, ZoomVideo } = useContext(ClientContext);
   const { selectedCamera, videoOn } = useContext(DeviceContext);
@@ -22,6 +26,11 @@ const Video = ({ leave }) => {
       .init("US-EN", "CDN")
       .then(() => {
         console.log("session created");
+        client.join(topic, JWT, userName).then(() => {
+          console.log('join successful')
+        }).catch(((err) => {
+          console.log(err)
+        }))
       })
       .catch((err) => {
         console.log(err);

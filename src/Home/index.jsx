@@ -9,6 +9,8 @@ const Home = () => {
   const [password, updatePassword] = useState("");
 
   const { setUserJWT } = useContext(UserContext);
+  const user = useContext(UserContext);
+  
 
   const navigate = useNavigate();
 
@@ -31,6 +33,10 @@ const Home = () => {
     let response = await fetch("api/generate", requestOptions);
     let sig = await response.json();
     setUserJWT(sig);
+    user.userInfo.userName = username;
+    user.userInfo.password = password;
+    user.userInfo.JWT = sig;
+    console.log('main', userInfo.userInfo)
     navigate("/session");
   };
 
