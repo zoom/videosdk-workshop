@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { ClientContext } from "../Context/Contexts";
+import { ClientContext, DeviceContext } from "../Context/Contexts";
 import GalleryView from "../Components/Video/GalleryView";
 import RibbonView from "../Components/Video/RibbonView";
 import { Button, Flex, Tabs } from "antd";
@@ -13,8 +13,10 @@ import { faWindowMaximize, faGrip } from "@fortawesome/free-solid-svg-icons";
 
 const Video = ({ leave }) => {
   const [activeKey, setActiveKey] = useState("ribbon");
-  const [client, ZoomVideo] = useContext(ClientContext);
-
+  const { client, ZoomVideo } = useContext(ClientContext);
+  const { selectedCamera, videoOn } = useContext(DeviceContext);
+  console.log(selectedCamera);
+  console.log(videoOn);
   useEffect(() => {
     client
       .init("US-EN", "CDN")

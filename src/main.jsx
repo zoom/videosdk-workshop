@@ -8,7 +8,7 @@ const client = ZoomVideo.createClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ClientContext.Provider value={[client, ZoomVideo]}>
+    <ClientContext.Provider value={{ client, ZoomVideo }}>
       <App />
     </ClientContext.Provider>
   </React.StrictMode>

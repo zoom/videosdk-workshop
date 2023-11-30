@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
+
 import IconSettingsButton from "../_Base/IconSettingsButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAntdItem } from "../../utils";
 import { useContext } from "react";
-import { MediaContext } from "../../Context/Contexts.js";
+import { ClientContext, DeviceContext } from "../../Context/Contexts.js";
 import { useDevices } from "../../Hooks/useDevices.js";
 import {
   faVideo,
@@ -11,51 +13,71 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 //localAudio or stream
-const CameraSettings = ({ videoRef, localVideo }) => {
-  const [media] = useContext(MediaContext);
+const CameraSettings = ({ videoRef, stream }) => {
   const { cameras } = useDevices();
+  const { selectedCamera, videoOn, setSelectedCamera, setVideoOn } =
+    useContext(DeviceContext);
+  const { client, ZoomVideo } = useContext(ClientContext);
+  const [localVideoTrack, setLocalVideoTrack] = useState("");
+  let defaultCamera = cameras?.[0]?.deviceId;
 
-  const toggleCamera = () => {
-    if (localVideo.isVideoStarted) {
-      localVideo.stop();
-      return;
+  useEffect(() => {
+    if (!selectedCamera) {
+      setSelectedCamera(defaultCamera);
     }
+  }, [defaultCamera, selectedCamera, setSelectedCamera]);
 
-    if (!localVideo.isVideoStarted) {
-      localVideo.start(videoRef.current);
-      return;
+  useEffect(() => {
+    if (!localVideoTrack && selectedCamera) {
+      setLocalVideoTrack(ZoomVideo.createLocalVideoTrack(selectedCamera));
     }
+  }, [localVideoTrack, selectedCamera, videoOn, ZoomVideo]);
+
+  useEffect(() => {
+    if (localVideoTrack && !localVideoTrack.isVideoStarted && videoOn) {
+      localVideoTrack.start(videoRef.current);
+    }
+    if (localVideoTrack && localVideoTrack.isVideoStarted && !videoOn) {
+      localVideoTrack.stop();
+    }
+  }, [localVideoTrack, videoOn, videoRef, ZoomVideo]);
+
+  const swtichCamera = (deviceId) => {
+    if (localVideoTrack.isVideoStarted) {
+      localVideoTrack.switchCamera(deviceId);
+    }
+    setSelectedCamera(deviceId);
+    setLocalVideoTrack(ZoomVideo.createLocalVideoTrack(deviceId));
   };
 
-  const switchCamera = (deviceId) => {
-    localVideo.switchCamera(deviceId);
-  };
-
-  const menuItems = cameras &&
-    cameras.length > 0 && [
-      getAntdItem(
-        "Select a Camera",
-        "camera",
-        null,
-        cameras.map((item) =>
-          getAntdItem(
-            item.label,
-            `camera|${item.deviceId}`,
-            item.deviceId === media?.activeCamera && (
-              <FontAwesomeIcon icon={faCheck} />
+  const menuItems =
+    (cameras &&
+      cameras.length > 0 && [
+        getAntdItem(
+          "Select a Camera",
+          "camera",
+          null,
+          cameras.map((item) =>
+            getAntdItem(
+              item.label,
+              `camera|${item.deviceId}`,
+              item.deviceId === selectedCamera && (
+                <FontAwesomeIcon icon={faCheck} />
+              )
             )
-          )
+          ),
+          "group"
         ),
-        "group"
-      ),
-    ];
+      ]) ||
+    [];
+
   return (
     <IconSettingsButton
       onIcon={faVideo}
       offIcon={faVideoSlash}
-      isOn={localVideo.isVideoStarted}
-      onToggle={toggleCamera}
-      onSelect={switchCamera}
+      isOn={videoOn}
+      onToggle={() => setVideoOn(!videoOn)}
+      onSelect={swtichCamera}
       menuItems={menuItems}
     />
   );

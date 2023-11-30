@@ -1,40 +1,39 @@
 import { useState } from "react";
-import { UserContext, MediaContext } from "./Context/Contexts";
+import { UserContext, DeviceContext } from "./Context/Contexts";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Session from "./Session";
 import "./App.css";
 
-// what is the full scope of this context?
-const userDetails = {
-  sessionName: "Zoom_Workshop",
-  userName: "",
-  sessionPasscode: "",
-  sessionKey: "",
-  roleType: 0,
-};
-
-const mediaDetails = {
-  activeSpeaker: "",
-  activeMic: "",
-  activeCamera: "",
-};
-
 const App = () => {
-  const [user, setUser] = useState(userDetails);
-  const [media, setMedia] = useState(mediaDetails);
+  const [userJWT, setUserJWT] = useState("");
+  const [selectedCamera, setSelectedCamera] = useState("");
+  const [selectedSpeaker, setSelectedSpeaker] = useState("");
+  const [selectedMic, setSelectedMic] = useState("");
+  const [videoOn, setVideoOn] = useState(true);
 
   return (
     <div>
-      <UserContext.Provider value={[user, setUser]}>
-        <MediaContext.Provider value={[media, setMedia]}>
+      <UserContext.Provider value={{ userJWT, setUserJWT }}>
+        <DeviceContext.Provider
+          value={{
+            selectedCamera,
+            selectedSpeaker,
+            selectedMic,
+            videoOn,
+            setSelectedCamera,
+            setSelectedSpeaker,
+            setSelectedMic,
+            setVideoOn,
+          }}
+        >
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Session" element={<Session />} />
             </Routes>
           </BrowserRouter>
-        </MediaContext.Provider>
+        </DeviceContext.Provider>
       </UserContext.Provider>
     </div>
   );

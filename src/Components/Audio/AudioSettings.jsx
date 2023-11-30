@@ -11,11 +11,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 //localAudio or stream
-const AudioSettings = ({ localAudio }) => {
+const AudioSettings = ({}) => {
   const [media] = useContext(MediaContext);
-  const [_, ZoomVideo] = useContext(ClientContext);
-  const { mics, speakers } = useDevices();
+  const [client, ZoomVideo] = useContext(ClientContext);
 
+  const { mics, speakers } = useDevices();
+  let localAudio = ZoomVideo.createLocalAudioTrack(mics?.[0]?.deviceId);
   localAudio.start();
 
   const toggleMic = async () => {

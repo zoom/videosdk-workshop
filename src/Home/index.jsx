@@ -8,17 +8,17 @@ const Home = () => {
   const [username, updateUsername] = useState("");
   const [password, updatePassword] = useState("");
 
-  const [user, setUser] = useContext(UserContext);
+  const { setUserJWT } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const submitUserData = async () => {
     const jwtConfig = {
-      topic: user.sessionName,
+      topic: "Zoom_Workshop",
       name: username,
       password: password,
       sessionKey: password,
-      roleType: 1,
+      roleType: 1, // run a check here for host "name" to match
     };
 
     //add JWT and initialilzation functionality
@@ -30,8 +30,7 @@ const Home = () => {
 
     let response = await fetch("api/generate", requestOptions);
     let sig = await response.json();
-    user.videoSDKJWT = sig;
-    setUser(user);
+    setUserJWT(sig);
     navigate("/session");
   };
 

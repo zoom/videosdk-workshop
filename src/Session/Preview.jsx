@@ -1,30 +1,19 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { Button, Flex } from "antd";
-import { ClientContext } from "../Context/Contexts.js";
-import { useDevices } from "../Hooks/useDevices.js";
-// this page manages everything related to the preview, and stores
-// the media setup for the stream to use and start from
+import { useNavigate } from "react-router-dom";
 
 import CameraSettings from "../Components/Video/CameraSettings.jsx";
-import AudioSettings from "../Components/Audio/AudioSettings.jsx";
-
-// handle the device changes as well
-// auto flip the preview - having it not flipped is uncomfortable
-// update user with device selection and off/on
+// import AudioSettings from "../Components/Audio/AudioSettings.jsx";
 
 const Preview = ({ join }) => {
-  const [_, ZoomVideo] = useContext(ClientContext);
-  const { cameras, mics } = useDevices();
+  const navigate = useNavigate();
   const videoRef = useRef(null);
-  let localAudio = ZoomVideo.createLocalAudioTrack(mics?.[0]?.deviceId);
-  let localVideo = ZoomVideo.createLocalVideoTrack(cameras?.[0]?.deviceId);
 
   const handleJoin = () => {
-    // join the session here?
     join();
   };
   const handleCancel = () => {
-    setIsModalOpen(false);
+    navigate("/");
   };
 
   return (
@@ -41,8 +30,8 @@ const Preview = ({ join }) => {
         </div>
       </Flex>
       <Flex>
-        <CameraSettings localVideo={localVideo} videoRef={videoRef} />
-        <AudioSettings localAudio={localAudio} />
+        <CameraSettings videoRef={videoRef} />
+        {/* <AudioSettings localAudio={localAudio} /> */}
       </Flex>
       <Button onClick={handleCancel}>Cancel</Button>
       <Button onClick={handleJoin}>Join</Button>
