@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import CameraSettings from "../Components/Video/CameraSettings.jsx";
 // import AudioSettings from "../Components/Audio/AudioSettings.jsx";
+import "./Session.css";
 
 const Preview = ({ join }) => {
   const navigate = useNavigate();
@@ -20,12 +21,12 @@ const Preview = ({ join }) => {
     <Flex vertical>
       <h1>Camera Preview</h1>
       <Flex>
-        <div className="preview-video">
+        <div width="640px" height="360px" className="preview-video">
           <video
             id="preview-camera-video"
             width="100%"
+            height="auto"
             ref={videoRef}
-            playsInline
           ></video>
         </div>
       </Flex>
