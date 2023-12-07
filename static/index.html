@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Zoom VideoSDK Web Demo</title>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no">    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="@zoom/videosdk-ui-toolkit/dist/videosdk-ui-toolkit.css">
+<script defer src="/main.min.js"></script></head>
+
+<body>
+    <div class="container app-root">
+
+        <!-- Preview view -->
+        <div id="preview-view" class="container preview__root">
+            <span>
+                <h1>Join Video Session</h1>
+            </span>
+            <div class="container video-app">
+                <div id='previewContainer' class="preview-video" playsinline="" muted="" data-video="0"></div>
+            </div>
+            <button id="join-button" class="join-button">
+                Join
+            </button>
+        </div>
+
+        <!-- Loading view -->
+        <div id="loading-view" class="container loading-view hidden">
+            <h1>Joining session, sit tight...</h1>
+            <i class="fas fa-spinner loading-spinner"></i>
+        </div>
+
+        <!-- In-session view -->
+        <div id="video-view" class="container video-app hidden">
+            <div id='sessionContainer'></div>
+        </div>
+
+        <!-- Ending view -->
+        <div id="end-view" class="container ending-view hidden">
+            <h1>You have successfully left the session!</h1>
+        </div>
+    </div>
+</body>
+
+</html>
