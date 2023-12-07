@@ -8,7 +8,6 @@ const app = express();
 app.use(express.json());
 
 // CrossOriginIsolation goes here
-// let router = Router('/api/generate', generateToken);
 
 app.post('/api/generate', async (req, res) => {
   let config = {
@@ -17,8 +16,7 @@ app.post('/api/generate', async (req, res) => {
     topic: req.body.topic,
     roleType: req.body.roleType
   };
-  console.log(req.body);
-  console.log(config);
+
   let signature = await generateToken(config);
   res.status(200).json(signature);
 });

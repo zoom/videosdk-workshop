@@ -19,7 +19,6 @@ async function generateToken({ sdkKey, sdkSecret, topic, roleType }) {
     const sHeader = JSON.stringify(oHeader);
     const sPayload = JSON.stringify(oPayload);
     signature = await KJUR.jws.JWS.sign('HS256', sHeader, sPayload, sdkSecret);
-    console.log(signature);
     return { signature };
   } catch (err) {
     return err;

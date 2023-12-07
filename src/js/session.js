@@ -19,7 +19,7 @@ const getSignature = async (sessionName) => {
 const initSession = async () => {
   let sessionContainer = document.getElementById('sessionContainer');
   const sessionJoined = () => {
-    console.log('session joined');
+    // console.log('session joined');
   };
 
   const sessionClosed = () => {
@@ -39,7 +39,7 @@ const initSession = async () => {
   config.videoSDKJWT = signature.signature;
 
   switchLoadingToSessionView();
-  await uitoolkit.joinSession(sessionContainer, config);
+  uitoolkit.joinSession(sessionContainer, config);
   uitoolkit.onSessionJoined(sessionJoined);
   uitoolkit.onSessionClosed(sessionClosed);
 
