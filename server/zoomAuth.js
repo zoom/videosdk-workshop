@@ -4,7 +4,7 @@ async function generateToken({ sdkKey, sdkSecret, topic, roleType }) {
   try {
     let signature = '';
     const iat = Math.round(new Date().getTime() / 1000);
-    const exp = iat + 60 * 60 * 2;
+    const exp = iat + 60 * 60 * 2; //two hours
 
     const oHeader = { alg: 'HS256', typ: 'JWT' };
 

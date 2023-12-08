@@ -1,5 +1,7 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const { generateToken } = require('./zoomAuth.js');
+dotenv.config();
 
 const { PORT = 3001 } = process.env;
 
