@@ -1,5 +1,4 @@
 import uitoolkit from '@zoom/videosdk-ui-toolkit/index.js';
-import { clickEventFactory } from './helpers/eventFactory.js';
 import { switchLoadingToSessionView, switchSessionToEndingView } from './helpers/views.js';
 
 const getSignature = async (sessionName) => {
