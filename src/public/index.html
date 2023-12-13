@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Zoom Video SDK UI Toolkit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <link rel="stylesheet" href="./zoom/dist/videosdk-ui-toolkit.css" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <main>
+      <form class="joinContainer" id="joinContainer">
+        <h1>Welcome!</h1>
+        <input type="text" placeholder="Your Name" id="yourName" required />
+
+        <select id="role">
+          <option value="0">Role: User</option>
+          <option value="1">Role: Host</option>
+        </select>
+
+        <button type="button" onClick="joinPreview()" id="joinPreviewButton">Join</button>
+      </form>
+
+      <div id="previewWrapper">
+        <div id="previewContainer"></div>
+        <button type="button" onClick="getVideoSDKJWT()" id="joinSessionButton">Join Session</button>
+      </div>
+
+      <div id="sessionContainer"></div>
+
+      <div id="finalContainer">
+        <p>Thanks for joining!</p>
+      </div>
+    </main>
+    <script type="module" src="./js/index.mjs"></script>
+  </body>
+</html>

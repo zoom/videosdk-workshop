@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+  max-width: 1200px;
+}
+
+#previewWrapper {
+  display: none;
+}
+
+#finalContainer {
+  display: none;
+  text-align: center;
+}
+
+#sessionNameRequired,
+#nameRequired,
+#passcodeLength {
+  color: red;
+  display: none;
+}
+
+.header {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.header img {
+  width: 50px;
+}
+
+.joinContainer {
+  width: 200px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.joinContainer input {
+  border: 1px solid gray;
+}
+
+.joinContainer input,
+.joinContainer button,
+select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.joinContainer button,
+.previewContainer button {
+  cursor: pointer;
+  background-color: #0751e4;
+  border: none;
+  color: #ffffff;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+
+.joinContainer button:hover,
+.previewContainer button {
+  background-color: #003cb3;
+}
+
+.joinContainer small {
+  text-align: center;
+  display: block;
+}
+
+.joinContainer small a {
+  color: #0751e4;
+}

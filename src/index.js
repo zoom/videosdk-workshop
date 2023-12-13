@@ -16,15 +16,12 @@ app.post('/api/generate', async (req, res) => {
     topic: req.body.topic,
     roleType: req.body.roleType
   };
-
   let signature = await generateToken(config);
   res.status(200).json(signature);
 });
 
-const frontendFiles = process.cwd() + '/static';
-
 app.use(
-  express.static(frontendFiles, {
+  express.static(`${process.cwd()}/src/public`, {
     setHeaders: (res) => {
       res.set('Cross-Origin-Opener-Policy', 'same-origin');
       res.set('Cross-Origin-Embedder-Policy', 'require-corp');
@@ -32,8 +29,10 @@ app.use(
   })
 );
 
-app.get('/*', (_, res) => {
-  res.send(frontendFiles + '/index.html');
+app.use('/zoom', express.static(`${process.cwd()}/node_modules/@zoom/videosdk-ui-toolkit`));
+
+app.get('/', (_, res) => {
+  res.send(`${process.cwd()}/src/public/index.html`);
 });
 
 app.listen(PORT, () => {

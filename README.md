@@ -14,13 +14,15 @@ For this application to function correctly, make sure you have the following ite
 To run this application locally:
 
 - Clone this repository
-  - `git clone git@github.com:zoom/videosdk-workshop.git`
+
 - Rename the environment file
   - `mv .env-example .env`
+
+
 - Log into your [Video SDK developer account](https://developers.zoom.us/docs/video-sdk/developer-accounts/), and go to the [application dashboard](https://marketplace.zoom.us/)
   - Add `ZOOM_SDK_KEY` value to `.env`
   - Add `ZOOM_SDK_SECRET` value to `.env`
 - `npm install`
 - `npm run dev`
 
-This will start an Express server and a React app using Vite with HMR.
+This will start an Express server and serve a demo application.

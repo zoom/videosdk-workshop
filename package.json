@@ -4,43 +4,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@zoom/videosdk": "^1.9.8",
     "@zoom/videosdk-ui-toolkit": "^1.9.8",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsrsasign": "^10.9.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.23.0",
-    "@babel/core": "7.23.2",
-    "@babel/eslint-parser": "7.22.15",
-    "@babel/preset-env": "7.22.9",
-    "babel-loader": "8.2.5",
-    "copy-webpack-plugin": "^11.0.0",
-    "crypto-js": "4.2.0",
-    "css-loader": "5.2.0",
     "eslint": "^8.46.0",
     "eslint-config-alloy": "^5.1.0",
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "file-loader": "6.2.0",
-    "html-webpack-plugin": "^5.5.0",
-    "js-base64": "3.6.0",
-    "node-polyfill-webpack-plugin": "1.1.0",
     "nodemon": "^3.0.2",
-    "prettier": "^3.0.1",
-    "rmrf": "^2.0.4",
-    "style-loader": "2.0.0",
-    "url-loader": "4.1.1",
-    "uuid": "^9.0.0",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
+    "prettier": "^3.0.1"
   },
   "scripts": {
-    "build": "npm run clean && ./node_modules/.bin/webpack",
-    "clean": "./node_modules/.bin/rimraf ./static",
-    "watch": "nodemon --watch src --exec \"npm run build\"",
-    "dev": "node ./server & npm run watch",
-    "start": "npm run build && node ./server"
+    "dev": "nodemon ./src",
+    "start": "node ./src"
   }
 }
