@@ -13,7 +13,7 @@ const config = {
   features: ['video', 'audio', 'settings', 'users', 'chat', 'share']
 };
 
-window.getVideoSDKJWT = getVideoSDKJWT;
+window.joinSession = joinSession;
 window.joinPreview = joinPreview;
 
 async function getVideoSDKJWT() {
@@ -33,7 +33,7 @@ async function getVideoSDKJWT() {
 
     let data = await response.json();
     config.videoSDKJWT = data.signature;
-    joinSession();
+    return;
   }
 }
 
@@ -43,8 +43,8 @@ function joinPreview() {
   previewWrapper.style.display = 'block';
 }
 
-function joinSession() {
-  console.log(config);
+async function joinSession() {
+  await getVideoSDKJWT();
   uitoolkit.joinSession(sessionContainer, config);
   previewWrapper.style.display = 'none';
   uitoolkit.closePreview(previewContainer);
