@@ -16,6 +16,7 @@ app.post('/api/generate', async (req, res) => {
     topic: req.body.topic,
     roleType: req.body.roleType
   };
+
   let signature = await generateToken(config);
   res.status(200).json(signature);
 });
@@ -28,7 +29,7 @@ app.use(
     }
   })
 );
-
+console.log(process.cwd());
 app.use('/zoom', express.static(`${process.cwd()}/node_modules/@zoom/videosdk-ui-toolkit`));
 
 app.get('/', (_, res) => {
